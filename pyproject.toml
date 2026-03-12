@@ -1,0 +1,55 @@
+[project]
+name = "multirob-coverage"
+version = "0.2.0"
+description = "Multi-robot coverage task simulation with RL and GNN (PyTorch version)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Core ML - PyTorch
+    "torch>=2.2.0",
+    "torch-geometric>=2.5.0",
+    
+    # RL Environment
+    "gymnasium>=1.0.0",
+    
+    # Graph Processing
+    "networkx>=3.2.0",
+    
+    # Visualization
+    "matplotlib>=3.8.0",
+    "pygame>=2.5.0",
+    
+    # Data & Utils
+    "numpy<2.0",
+    "tensorboard>=2.15.0",
+    
+    # Progress bar
+    "tqdm>=4.66.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "ruff>=0.3.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cover_world", "models"]
+
+# UV Tool Configuration
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "D", "UP", "B", "C4", "SIM"]
+ignore = ["D100", "D104"]
